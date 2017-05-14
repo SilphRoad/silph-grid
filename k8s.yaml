@@ -11,15 +11,17 @@ spec:
     matchLabels:
       app: silph-grid
   strategy: {}
+  minReadySeconds: 10
   template:
     metadata:
       creationTimestamp: null
       labels:
         app: silph-grid
+        version: 1494727578
     spec:
       containers:
       - image: silph/silph-grid:latest
-        imagePullPolicy: ""
+        imagePullPolicy: Always
         name: silph-grid
         ports:
         - containerPort: 8081
