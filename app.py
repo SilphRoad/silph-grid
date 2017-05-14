@@ -31,6 +31,7 @@ if __name__ == '__main__':
     app.router.add_get('/', index)
     app.router.add_post('/cell', cells.from_latlng)
     app.router.add_get('/cell/{id}', cells.cellid)
+    app.router.add_get('/cells/region', cells.from_rect)
 
     setup_swagger(app, swagger_url='/api/v0/doc')
 
