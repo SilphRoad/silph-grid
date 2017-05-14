@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: silph-grid
+  name: silph-grid
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: silph-grid
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: silph-grid
+    spec:
+      containers:
+      - image: silph/silph-grid:latest
+        imagePullPolicy: ""
+        name: silph-grid
+        ports:
+        - containerPort: 8081
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: silph-grid
+  labels:
+    app: silph-grid
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    app: silph-grid
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+ name: silph-grid-ingress
+spec:
+ rules:
+   - host: grid.silph.io
+     http:
+       paths:
+         - path: /
+           backend:
+             serviceName: silph-grid
+             servicePort: 80
