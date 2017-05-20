@@ -48,7 +48,13 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
  name: silph-grid-ingress
+ annotations:
+   kubernetes.io/tls-acme: "true"
 spec:
+ tls:
+   - hosts:
+      - grid.silph.io
+     secretName: grid-tls
  rules:
    - host: grid.silph.io
      http:
