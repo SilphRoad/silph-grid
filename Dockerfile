@@ -1,9 +1,11 @@
-FROM python:3.5
+FROM python:3.6
 
-ADD . /code
 WORKDIR /code
 
+COPY requirements.txt /code
 RUN pip install -r requirements.txt
+
+COPY . /code
 
 EXPOSE 8081
 

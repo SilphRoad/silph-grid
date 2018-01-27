@@ -17,7 +17,6 @@ spec:
       creationTimestamp: null
       labels:
         app: silph-grid
-        version: 1494727578
     spec:
       containers:
       - image: silph/silph-grid:latest
