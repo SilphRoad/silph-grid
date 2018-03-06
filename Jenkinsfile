@@ -10,7 +10,11 @@ node {
     }
 
     stage('Build') {
-        app = docker.build("${imageTag}:${env.BUILD_NUMBER}")
+        if (env.BRANCH_NAME == 'master') {
+            app = docker.build("${imageTag}:${env.BUILD_NUMBER}")
+        } else {
+            app = docker.build("${imageTag}:${env.BUILD_NUMBER}", "--no-cache")
+        }
     }
 
     stage('Test') {
