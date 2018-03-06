@@ -6,7 +6,7 @@ metadata:
     app: silph-grid
   name: silph-grid
 spec:
-  replicas: 10
+  replicas: 1
   selector:
     matchLabels:
       app: silph-grid
@@ -46,7 +46,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
- name: silph-grid-ingress
+ name: silph-grid
  annotations:
    kubernetes.io/tls-acme: "true"
 spec:
